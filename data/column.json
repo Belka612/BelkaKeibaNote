@@ -1,18 +1,10 @@
 [
   {
-    "title": "ハイペース戦の勝ち筋",
-    "date": "2025-03-12",
-    "slug": "pace-analysis",
-    "summary": "隊列形成と脚質別の回収率から戦略を構築。",
-    "tags": ["コラム", "データ分析"],
-    "image": ""
-  },
-  {
-    "title": "騎手別の位置取り傾向",
-    "date": "2025-01-28",
-    "slug": "jockey-strategy",
-    "summary": "有力騎手の序盤ポジション取りを一覧で整理。",
-    "tags": ["コラム", "統計"],
+    "title": "推し馬とその布教",
+    "date": "2025-10-19",
+    "slug": "proselytizing_as_my_favorite_horse",
+    "summary": "推し馬とその魅力の布教。",
+    "tags": ["コラム", "推し馬", "布教"],
     "image": ""
   }
 ]

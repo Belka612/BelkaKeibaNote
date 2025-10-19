@@ -14,6 +14,9 @@
   --transition-fast: 150ms ease;
   --transition-medium: 240ms ease;
   --max-width: 1120px;
+  /* Adjustable hero sizing */
+  --hero-min-height: 480px; /* increase for taller hero */
+  --hero-media-aspect: 16 / 9; /* e.g. 21 / 9 for more cinematic */
 }
 
 body {
@@ -178,7 +181,7 @@ body {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 100%;
-  min-height: 360px;
+  min-height: var(--hero-min-height, 360px);
 }
 
 .c-hero__slide {
@@ -198,7 +201,7 @@ body {
 .c-hero__media {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--hero-media-aspect, 16 / 9);
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--color-border);

@@ -75,9 +75,27 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
     link.className = 'c-hero__link';
     link.href = resolveInternalUrl(rootPath, item.url || '#');
     link.textContent = '詳しく見る';
+    // Ensure link click is not swallowed by swipe handlers
+    link.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const href = link.getAttribute('href');
+      if (!href || href === '#') {
+        e.preventDefault();
+      }
+    });
 
     content.append(title, meta, comment, link);
     slide.append(media, content);
+    // Make the whole slide clickable (except on interactive elements)
+    slide.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target && typeof target.closest === 'function') {
+        if (target.closest('a, button, select, input')) return;
+      }
+      if (link && link.href && link.href !== '#') {
+        window.location.href = link.href;
+      }
+    });
     slidesContainer.append(slide);
     return slide;
   });
@@ -202,6 +220,18 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
   rootElement.addEventListener('mouseleave', resumeInteraction);
   rootElement.addEventListener('focusin', pauseInteraction);
   rootElement.addEventListener('focusout', resumeInteraction);
+
+  // Prevent swipe handling when the interaction starts on a link or control
+  slidesContainer.addEventListener(
+    'pointerdown',
+    (event) => {
+      const t = event.target;
+      if (t && typeof t.closest === 'function' && t.closest('a, button, input, select, textarea')) {
+        event.stopImmediatePropagation();
+      }
+    },
+    true // capture phase
+  );
 
   slidesContainer.addEventListener('pointerdown', (event) => {
     pointerActive = true;

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="個人用競馬予想メモ。今週の注目レースと過去の振り返りをまとめる静的サイトです。">
+  <title>Keiba Note | 今週の注目レース</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/theme.css">
+</head>
+<body data-page="home" data-root-path="." class="is-loading">
+  <div id="header-placeholder"></div>
+  <main id="main-content" class="l-main" tabindex="-1">
+    <section class="c-hero" aria-label="今週の注目レース">
+      <div class="c-hero__background" aria-hidden="true"></div>
+      <div class="c-hero__wave c-hero__wave--top" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none" focusable="false">
+          <path d="M0,128 C120,80 240,32 360,32 C480,32 600,80 720,104 C840,128 960,128 1080,112 C1200,96 1320,64 1440,64 L1440,0 L0,0 Z"></path>
+        </svg>
+      </div>
+      <div class="c-hero__viewport" data-slider-root>
+        <div class="c-hero__slides" data-slider-slides role="region" aria-live="polite" aria-label="注目レースのスライド"></div>
+        <button class="c-hero__control c-hero__control--prev" type="button" data-slider-prev aria-label="前のスライド">
+          <span aria-hidden="true">&#9664;</span>
+        </button>
+        <button class="c-hero__control c-hero__control--next" type="button" data-slider-next aria-label="次のスライド">
+          <span aria-hidden="true">&#9654;</span>
+        </button>
+        <div class="c-hero__dots" data-slider-dots role="tablist" aria-label="注目レースの選択"></div>
+        <button class="c-hero__toggle" type="button" data-slider-toggle aria-label="自動再生を一時停止">
+          <span data-toggle-label>一時停止</span>
+        </button>
+      </div>
+      <div class="c-hero__wave c-hero__wave--bottom" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none" focusable="false">
+          <path d="M0,32 C180,64 360,112 540,120 C720,128 900,96 1080,80 C1260,64 1350,72 1440,96 L1440,160 L0,160 Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <section class="c-section" aria-labelledby="featured-heading">
+      <div class="u-container">
+        <header class="c-section__header">
+          <h2 id="featured-heading" class="c-section__title">今週の注目</h2>
+          <p class="c-section__description">ヒーロースライダーと同じ注目データの要約です。タップで詳細へ移動できます。</p>
+        </header>
+        <div class="c-featured-grid" data-featured-grid></div>
+      </div>
+    </section>
+
+    <section class="c-section c-section--dark" aria-labelledby="category-heading">
+      <div class="c-section__wave c-section__wave--top" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
+          <path d="M0,80 C180,32 360,0 540,0 C720,0 900,32 1080,64 C1260,96 1350,108 1440,96 L1440,120 L0,120 Z"></path>
+        </svg>
+      </div>
+      <div class="u-container">
+        <header class="c-section__header">
+          <h2 id="category-heading" class="c-section__title">カテゴリーから探す</h2>
+          <p class="c-section__description">主要カテゴリへ素早くアクセスできます。編集はJSONとMarkdownのみで完結します。</p>
+        </header>
+        <div class="c-card-grid" data-category-links></div>
+      </div>
+      <div class="c-section__wave c-section__wave--bottom" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
+          <path d="M0,40 C200,80 400,120 600,112 C800,104 1000,48 1200,32 C1400,16 1440,24 1440,24 L1440,0 L0,0 Z"></path>
+        </svg>
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

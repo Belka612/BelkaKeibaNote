@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="競馬予想ノートの記事詳細を表示します。">
+  <title>Keiba Note | 記事詳細</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/theme.css">
+</head>
+<body data-page="post" data-root-path="." class="is-loading">
+  <div id="header-placeholder"></div>
+  <main id="main-content" class="l-main" tabindex="-1">
+    <article class="c-article" data-article>
+      <header class="c-article__header">
+        <p class="c-article__meta" data-article-date></p>
+        <h1 class="c-article__title" data-article-title>読み込み中...</h1>
+        <div class="c-article__tags" data-article-tags></div>
+      </header>
+      <nav class="c-article__toc" data-article-toc aria-label="目次" hidden>
+        <h2 class="c-article__toc-title">目次</h2>
+        <ol class="c-article__toc-list" data-article-toc-list></ol>
+      </nav>
+      <div class="c-article__body" data-article-body>
+        <p>記事を読み込んでいます...</p>
+      </div>
+      <footer class="c-article__footer">
+        <div class="c-article__nav" data-article-nav></div>
+      </footer>
+    </article>
+    <p class="c-article__error" data-article-error hidden>記事を読み込めませんでした。URLとデータファイルを確認してください。</p>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

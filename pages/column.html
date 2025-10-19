@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="コラム形式で競馬の考察やデータ分析をまとめています。長期的な学びの記録に。">
+  <title>Keiba Note | コラム</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body data-page="category" data-category="column" data-root-path=".." class="is-loading">
+  <div id="header-placeholder"></div>
+  <main id="main-content" class="l-main" tabindex="-1">
+    <section class="c-section c-section--listing" aria-labelledby="page-title">
+      <div class="c-section__wave c-section__wave--top" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
+          <path d="M0,100 C220,60 440,32 660,32 C880,32 1100,68 1320,92 C1440,108 1440,108 1440,108 L1440,0 L0,0 Z"></path>
+        </svg>
+      </div>
+      <div class="u-container">
+        <header class="c-section__header">
+          <h1 id="page-title" class="c-section__title">コラム</h1>
+          <p class="c-section__description">予想の背景となる理論やデータ分析を整理。腰を据えて読み返したい内容をまとめます。</p>
+        </header>
+        <div class="c-controls" data-controls>
+          <label class="c-controls__sort">
+            <span class="c-controls__label">並び順</span>
+            <select data-sort>
+              <option value="newest">新しい順</option>
+              <option value="oldest">古い順</option>
+            </select>
+          </label>
+          <div class="c-controls__tags" data-tag-filter role="list"></div>
+          <button class="c-controls__reset" type="button" data-tag-reset aria-label="タグの絞り込みを解除">リセット</button>
+        </div>
+        <div class="c-card-grid" data-card-grid></div>
+        <p class="c-empty" data-empty-message hidden>条件に一致する記事がありません。</p>
+      </div>
+      <div class="c-section__wave c-section__wave--bottom" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
+          <path d="M0,16 C260,64 520,120 780,112 C1040,104 1300,48 1440,24 L1440,120 L0,120 Z"></path>
+        </svg>
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

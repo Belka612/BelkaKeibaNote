@@ -86,8 +86,9 @@ async function initHome(rootPath) {
     renderCategoryLinks(categoryContainer, rootPath);
     initHeroSlider(heroSection, featured, rootPath, { interval: 5000 });
 
+    // Always keep a consistent site title on home
+    document.title = "Belka's Keiba Note";
     if (featured && featured.length) {
-      document.title = `${featured[0].title} | Keiba Note`;
       setMetaDescription(summariseText(featured[0].comment || featured[0].title));
     }
     highlightNavigation('home');
@@ -169,7 +170,7 @@ async function initCategoryPage(category, rootPath) {
     updateList();
 
     if (data.length) {
-      document.title = `${normaliseCategoryName(category)} | Keiba Note`;
+      document.title = `${normaliseCategoryName(category)} | Belka's Keiba Note`;
       setMetaDescription(summariseText(data[0].summary || `${normaliseCategoryName(category)}の最新記事一覧`));
     }
 
@@ -233,7 +234,7 @@ async function initPostPage(rootPath) {
     const nextItem = index < sorted.length - 1 ? sorted[index + 1] : null;
     renderArticleNavigation(nav, prevItem, nextItem, postParam.category, rootPath);
 
-    document.title = `${entry.title} | Keiba Note`;
+    document.title = `${entry.title} | Belka's Keiba Note`;
     setMetaDescription(summariseText(entry.summary || markdown.replace(/\n+/g, ' ')));
 
     highlightNavigation(postParam.category);

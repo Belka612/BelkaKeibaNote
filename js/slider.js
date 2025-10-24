@@ -1,5 +1,6 @@
 'use strict';
 
+import { renderInlineMarkdown } from './markdown.js';
 import { createNoImageElement, formatDate, resolveAssetPath, resolveInternalUrl } from './render.js';
 
 /**
@@ -69,7 +70,7 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
 
     const comment = document.createElement('p');
     comment.className = 'c-hero__comment';
-    comment.textContent = item.comment || '';
+    comment.innerHTML = renderInlineMarkdown(item.comment || '');
 
     const link = document.createElement('a');
     link.className = 'c-hero__link';

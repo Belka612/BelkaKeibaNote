@@ -1,5 +1,6 @@
 'use strict';
 
+import { renderInlineMarkdown } from './markdown.js';
 import { buildPostUrl } from './router.js';
 
 /**
@@ -73,7 +74,7 @@ export function renderFeaturedGrid(container, items, rootPath) {
 
     const comment = document.createElement('p');
     comment.className = 'c-featured-card__comment';
-    comment.textContent = item.comment || '';
+    comment.innerHTML = renderInlineMarkdown(item.comment || '');
 
     link.append(title, date, comment);
     container.append(link);
@@ -170,7 +171,7 @@ export function renderCardGrid(container, items, category, rootPath) {
 
     const summary = document.createElement('p');
     summary.className = 'c-card__summary';
-    summary.textContent = item.summary || '';
+    summary.innerHTML = renderInlineMarkdown(item.summary || '');
 
     const tags = document.createElement('div');
     tags.className = 'c-card__tags';

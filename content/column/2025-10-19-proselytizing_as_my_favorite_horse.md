@@ -1,7 +1,7 @@
 ## エリカエクスプレス
 
-新馬戦からずっと逃げているエリカ様。上がりのかかる競馬を得意としています。
-[新馬戦](https://www.youtube.com/watch?v=Zjo_svVxL1g)
+[新馬戦](https://www.youtube.com/watch?v=Zjo_svVxL1g)からずっと逃げているエリカ様。上がりのかかる競馬を得意としています。
+
 
 ## タイセイプランセス
 

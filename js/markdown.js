@@ -51,6 +51,11 @@ function applyInlineFormatting(text) {
   );
 }
 
+export function renderInlineMarkdown(text) {
+  if (!text) return '';
+  return applyInlineFormatting(escapeHtml(text));
+}
+
 function isTableSeparator(line) {
   if (!line) return false;
   const cells = splitTableCells(line);

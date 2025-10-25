@@ -32,6 +32,8 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
   let userPaused = prefersReducedMotion.matches;
   let pointerActive = false;
   let pointerStartX = 0;
+  let pointerMoved = false;
+  let blockClickFromSwipe = false;
 
   slidesContainer.innerHTML = '';
   dotsContainer.innerHTML = '';
@@ -89,6 +91,10 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
     slide.append(media, content);
     // Make the whole slide clickable (except on interactive elements)
     slide.addEventListener('click', (event) => {
+      if (blockClickFromSwipe) {
+        event.preventDefault();
+        return;
+      }
       const target = event.target;
       if (target && typeof target.closest === 'function') {
         if (target.closest('a, button, select, input')) return;
@@ -237,6 +243,8 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
   slidesContainer.addEventListener('pointerdown', (event) => {
     pointerActive = true;
     pointerStartX = event.clientX;
+    pointerMoved = false;
+    blockClickFromSwipe = false;
     try {
       slidesContainer.setPointerCapture(event.pointerId);
     } catch (error) {
@@ -248,6 +256,10 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
   slidesContainer.addEventListener('pointermove', (event) => {
     if (!pointerActive) return;
     const deltaX = event.clientX - pointerStartX;
+    if (!pointerMoved && Math.abs(deltaX) > 10) {
+      pointerMoved = true;
+      blockClickFromSwipe = true;
+    }
     slides.forEach((slide, index) => {
       const offset = (index - currentIndex) * 100;
       slide.style.transition = 'none';
@@ -264,6 +276,7 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
       // ignore
     }
     const deltaX = event.clientX - pointerStartX;
+    const dragged = pointerMoved;
     if (Math.abs(deltaX) > 50) {
       if (deltaX < 0) {
         next();
@@ -272,6 +285,18 @@ export function initHeroSlider(rootElement, items, rootPath, options = {}) {
       }
     } else {
       goTo(currentIndex);
+    }
+    pointerMoved = false;
+    if (dragged) {
+      const raf =
+        typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function'
+          ? window.requestAnimationFrame.bind(window)
+          : (fn) => setTimeout(fn, 16);
+      raf(() => {
+        blockClickFromSwipe = false;
+      });
+    } else {
+      blockClickFromSwipe = false;
     }
     restartAutoplay();
   };

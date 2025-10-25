@@ -119,6 +119,7 @@ export function parseMarkdown(markdown) {
   let inCodeBlock = false;
   let codeLanguage = '';
   const codeLines = [];
+  let currentQuote = null;
 
   const closeList = () => {
     if (!currentList) return;
@@ -141,6 +142,15 @@ export function parseMarkdown(markdown) {
       html += '<ul>';
       currentList = { type: 'ul' };
     }
+  };
+
+  const flushQuote = () => {
+    if (!currentQuote) return;
+    const quoteContent = currentQuote
+      .map((quoteLine) => applyInlineFormatting(escapeHtml(quoteLine)))
+      .join('<br />');
+    html += `<blockquote>${quoteContent}</blockquote>`;
+    currentQuote = null;
   };
 
   const flushCodeBlock = () => {
@@ -169,12 +179,14 @@ export function parseMarkdown(markdown) {
 
     if (!trimmed) {
       closeList();
+      flushQuote();
       continue;
     }
 
     const fenceStart = trimmed.match(/^```(\w+)?\s*$/);
     if (fenceStart) {
       closeList();
+      flushQuote();
       inCodeBlock = true;
       codeLanguage = fenceStart[1] ? fenceStart[1].toLowerCase() : '';
       codeLines.length = 0;
@@ -184,6 +196,7 @@ export function parseMarkdown(markdown) {
     const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)/);
     if (headingMatch) {
       closeList();
+      flushQuote();
       const level = headingMatch[1].length;
       const headingText = headingMatch[2];
       const content = applyInlineFormatting(escapeHtml(headingText));
@@ -195,6 +208,7 @@ export function parseMarkdown(markdown) {
 
     if (/^([-*_])\1{2,}$/.test(trimmed.replace(/\s+/g, ''))) {
       closeList();
+      flushQuote();
       html += '<hr />';
       continue;
     }
@@ -202,6 +216,7 @@ export function parseMarkdown(markdown) {
     const nextLine = lines[i + 1] ? lines[i + 1].replace(/\r/g, '') : '';
     if (isTableRow(line) && isTableSeparator(nextLine)) {
       closeList();
+      flushQuote();
       const headers = splitTableCells(line);
       const alignments = getColumnAlignments(nextLine, headers.length);
       const rows = [];
@@ -224,6 +239,7 @@ export function parseMarkdown(markdown) {
 
     const orderedMatch = trimmed.match(/^(\d+)\.\s+(.+)/);
     if (orderedMatch) {
+      flushQuote();
       const value = parseInt(orderedMatch[1], 10);
       ensureList('ol', Number.isNaN(value) ? 1 : value);
       const content = applyInlineFormatting(escapeHtml(orderedMatch[2]));
@@ -235,27 +251,32 @@ export function parseMarkdown(markdown) {
 
     const listMatch = trimmed.match(/^[-*+]\s+(.+)/);
     if (listMatch) {
+      flushQuote();
       ensureList('ul');
       const itemContent = applyInlineFormatting(escapeHtml(listMatch[1]));
       html += `<li>${itemContent}</li>`;
       continue;
     }
 
-    const quoteMatch = trimmed.match(/^>\s?(.*)/);
+    const quoteMatch = line.match(/^\s{0,3}>\s?(.*)$/);
     if (quoteMatch) {
       closeList();
-      const quoteContent = applyInlineFormatting(escapeHtml(quoteMatch[1]));
-      html += `<blockquote>${quoteContent}</blockquote>`;
+      if (!currentQuote) {
+        currentQuote = [];
+      }
+      currentQuote.push(typeof quoteMatch[1] === 'string' ? quoteMatch[1] : '');
       continue;
     }
 
     closeList();
+    flushQuote();
     const paragraph = applyInlineFormatting(escapeHtml(trimmed));
     html += `<p>${paragraph}</p>`;
   }
 
   flushCodeBlock();
   closeList();
+  flushQuote();
 
   return { html, headings };
 }

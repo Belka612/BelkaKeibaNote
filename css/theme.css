@@ -550,6 +550,8 @@ body {
 
 .c-article__body p {
   font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--color-text-subtle);
 }
 
 .c-article__body ul,
@@ -575,6 +577,12 @@ body {
   padding-left: 1rem;
   color: var(--color-text-subtle);
   font-style: italic;
+}
+
+.c-article__body strong,
+.c-article__body b {
+  color: var(--color-text);
+  font-weight: 600;
 }
 
 .c-article__body code {

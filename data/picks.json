@@ -1,8 +1,24 @@
 [
   {
+    "title" : "ブリーダーズカップ 予想",
+    "date" : "2025-11-01",
+    "slug" : "2025breeders-cup",
+    "summary" : "最強馬決定戦！",
+    "tags" : ["G1", "海外競馬"],
+    "image" : ""
+  },
+  {
+    "title" : "11月01日 WIN5対象レース予想",
+    "date" : "2025-11-01",
+    "slug" : "20251101-win5",
+    "summary" : "WIN5対象レースの予想まとめ",
+    "tags" : ["WIN5"],
+    "image" : ""
+  },
+  {
     "title" : "天皇賞・秋(G1) 予想",
     "date" : "2025-11-02",
-    "slug" : "akiten",
+    "slug" : "2025akiten",
     "summary" : "秋天だぁ！",
     "tags" : ["G1", "中距離"],
     "Image" : ""
@@ -10,7 +26,7 @@
   {
     "title": "菊花賞(G1) 予想",
     "date": "2025-10-26",
-    "slug": "kikka-sho",
+    "slug": "2025kikka-sho",
     "summary": "また武豊は逃げるのかぁ？",
     "tags": ["G1", "牡馬", "長距離"],
     "image": ""

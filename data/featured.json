@@ -1,9 +1,23 @@
 [
   {
+    "title" : "ブリーダーズカップ 予想",
+    "date" : "2025-11-01",
+    "comment" : "最強馬決定戦！",
+    "url" : "post.html?p=picks/2025breeders-cup",
+    "image" : ""
+  },
+  {
+    "title" : "11月1日 WIN5対象レース予想",
+    "date" : "2025-11-01",
+    "comment" : "WIN5対象レースの予想まとめ",
+    "url" : "post.html?p=picks/20251101-win5",
+    "image" : ""
+  },
+  {
     "title" : "天皇賞・秋(G1)",
     "date" : "2025-11-02",
-    "comment" : "(-ω-;)",
-    "url" : "post.html?p=picks/akiten",
+    "comment" : "一番好きなレース。時点に東京優駿、アイビスSDと続きます。",
+    "url" : "post.html?p=picks/2025akiten",
     "image" : ""
   }
 ]
